@@ -159,9 +159,14 @@ export class AgmCircle implements OnInit, OnChanges, OnDestroy {
 
   /** @internal */
   ngOnInit() {
-    this._manager.addCircle(this);
-    this._circleAddedToManager = true;
-    this._registerEventListeners();
+//     this._manager.addCircle(this);
+//     this._circleAddedToManager = true;
+//     this._registerEventListeners();
+    var rip = this._manager.addCircle(this);
+    rip.then(() => {
+        this._circleAddedToManager = true;
+        this._registerEventListeners();
+    });
   }
 
   /** @internal */
