@@ -13,23 +13,40 @@ export class CircleManager {
   constructor(private _apiWrapper: GoogleMapsAPIWrapper, private _zone: NgZone) {}
 
   addCircle(circle: AgmCircle) {
-    this._circles.set(circle, this._apiWrapper.getNativeMap().then( () =>
-      this._apiWrapper.createCircle({
-        center: {lat: circle.latitude, lng: circle.longitude},
-        clickable: circle.clickable,
-        draggable: circle.draggable,
-        editable: circle.editable,
-        fillColor: circle.fillColor,
-        fillOpacity: circle.fillOpacity,
-        radius: circle.radius,
-        strokeColor: circle.strokeColor,
-        strokeOpacity: circle.strokeOpacity,
-        strokePosition: google.maps.StrokePosition[circle.strokePosition],
-        strokeWeight: circle.strokeWeight,
-        visible: circle.visible,
-        zIndex: circle.zIndex,
-      }))
-    );
+//     this._circles.set(circle, this._apiWrapper.getNativeMap().then( () =>
+//       this._apiWrapper.createCircle({
+//         center: {lat: circle.latitude, lng: circle.longitude},
+//         clickable: circle.clickable,
+//         draggable: circle.draggable,
+//         editable: circle.editable,
+//         fillColor: circle.fillColor,
+//         fillOpacity: circle.fillOpacity,
+//         radius: circle.radius,
+//         strokeColor: circle.strokeColor,
+//         strokeOpacity: circle.strokeOpacity,
+//         strokePosition: google.maps.StrokePosition[circle.strokePosition],
+//         strokeWeight: circle.strokeWeight,
+//         visible: circle.visible,
+//         zIndex: circle.zIndex,
+//       }))
+//     );
+    return this._apiWrapper.getNativeMap().then(() => {
+        this._circles.set(circle, this._apiWrapper.createCircle({
+            center: { lat: circle.latitude, lng: circle.longitude },
+            clickable: circle.clickable,
+            draggable: circle.draggable,
+            editable: circle.editable,
+            fillColor: circle.fillColor,
+            fillOpacity: circle.fillOpacity,
+            radius: circle.radius,
+            strokeColor: circle.strokeColor,
+            strokeOpacity: circle.strokeOpacity,
+            strokePosition: google.maps.StrokePosition[circle.strokePosition],
+            strokeWeight: circle.strokeWeight,
+            visible: circle.visible,
+            zIndex: circle.zIndex,
+        }))
+    });
   }
 
   /**
